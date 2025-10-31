@@ -1,0 +1,31 @@
+# Build settings
+gems:
+  - jemoji
+  - jekyll-paginate
+
+# Site settings
+title: "AI-Ready"
+description: > # this means to ignore newlines until "email:"
+   Exploring and building AI models
+
+email: jdzuniga@hotmail.com
+
+#home and floating picture
+logo: "/assets/images/blog.jpg"
+float_logo: true
+
+# home cover
+cover: "/assets/images/home_background.jpg"
+
+name: 'David Zuñiga' # copyright
+author: 'David Zuñiga'
+# author picture
+author_image: "/assets/images/profile.jpg"
+
+paginate:	4
+
+social:
+  - icon:	github
+    url:	https://github.com/jdzuniga
+    desc:	github
+
