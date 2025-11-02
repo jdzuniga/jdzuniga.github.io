@@ -21,7 +21,7 @@ After many iterations, the model achived an RMSE of 0.40 and an R² of 0.45. Som
 <img src="/../assets/article_images/animeoracle/demo.png" alt="Live Website"/>
 
 This project demonstrated that machine learning can effectively predict anime scores based on metadata. For more in depth details about this 
-project, you can view the [Github](https://animeoracle.azurewebsites.net/) repository. A [Live Demo](https://animeoracle.azurewebsites.net/)
+project, you can view the [Github](https://github.com/jdzuniga/animeoracle) repository. A [Live Demo](https://animeoracle.azurewebsites.net/)
 is also available and the results are updated biweekly.
 
 <!-- {% highlight python %}
