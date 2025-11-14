@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Anime Score Predictor"
+title:  "Predicting Anime Score with Machine Learning"
 date:   2025-09-2
 # categories: ml lgboost anime
 tags: featured
@@ -9,7 +9,6 @@ image2: /assets/article_images/animeoracle/background.jpg
 thumbnail: /assets/article_images/animeoracle/thumbnail.jpg
 ---
 
-### Predicting Anime Popularity with Machine Learning
 Anime has been growing in popularity over the past few years, with new shows and movies constantly creating waves of excitement among fans. Studios, streaming platforms, and advertisers are all eager to figure out which titles will capture audiences and generate the most buzz. Choosing the wrong project can mean wasted time and money, while a hit series can bring major profits through streaming subscriptions, merchandise, and global recognition.
 
 ### Objective
