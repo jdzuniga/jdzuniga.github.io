@@ -92,9 +92,8 @@ The process begins with rich metadata engineering:
 - **Director and writer embeddings** (using frequency-based encoding or one-hot for top contributors)
 - **Temporal features**: Release year (normalized and log-transformed)
 - **Quality signals**: Average rating and weighted rating (normalized)
-- **Popularity metrics**: Number of votes (normalized)
 
-These features are concatenated into a high-dimensional sparse vector representing everything we know about each movie.
+These features are concatenated into a high-dimensional sparse vector representing everything we know about each movie. To avoid multicollinearity, `numVotes` and `averageRating` were excluded as features since this information is already captured in `weightedRating`. Including correlated features would waste bottleneck capacity by encoding redundant information, reducing the model's ability to learn other meaningful patterns.
 
 **Training Process**
 
@@ -113,68 +112,79 @@ Cosine similarity is preferred over Euclidean distance because it measures the a
 
 
 
-### The Neural Network
+### The Autoencoder
 {% highlight python %}
-input_dim = num_features
-encoding_dim = 16  # Compressed representation (embeddings)
+
+input_dim = X.shape[1] 
+encoding_dim = 64
 
 # Encoder
-input_layer = keras.layers.Input(shape=(input_dim,))
-encoded = keras.layers.Dense(128, activation='relu')(input_layer)
-encoded = keras.layers.Dense(64, activation='relu')(encoded)
-encoded = keras.layers.Dense(32, activation='relu')(encoded)
-embedding_layer = keras.layers.Dense(encoding_dim, activation='relu', name='embedding')(encoded)
+input_layer = layers.Input(shape=(input_dim,))
+
+encoded = layers.Dense(512, activation='relu')(input_layer) 
+encoded = layers.BatchNormalization()(encoded)
+encoded = layers.Dropout(0.3)(encoded)
+
+encoded = layers.Dense(256, activation='relu')(encoded)
+encoded = layers.BatchNormalization()(encoded)
+encoded = layers.Dropout(0.2)(encoded)
+
+#  Embedding layer
+embedding = layers.Dense(encoding_dim, activation='linear', name='embedding')(encoded)
 
 # Decoder
-decoded = keras.layers.Dense(32, activation='relu')(embedding_layer)
-decoded = keras.layers.Dense(64, activation='relu')(decoded)
-decoded = keras.layers.Dense(128, activation='relu')(decoded)
-output_layer = keras.layers.Dense(input_dim, activation='sigmoid')(decoded)
+decoded = layers.Dense(256, activation='relu')(embedding)
+decoded = layers.BatchNormalization()(decoded)
+decoded = layers.Dropout(0.2)(decoded)
 
-# Full Autoencoder Model
-autoencoder = keras.Model(input_layer, output_layer)
-autoencoder.compile(optimizer='adam', loss='mse')
+decoded = layers.Dense(512, activation='relu')(decoded) 
+decoded = layers.BatchNormalization()(decoded)
+decoded = layers.Dropout(0.3)(decoded)
+
+output_layer = layers.Dense(input_dim, activation='linear')(decoded)
+
+autoencoder = models.Model(inputs=input_layer, outputs=output_layer)
+encoder = models.Model(inputs=input_layer, outputs=embedding)
+
 {% endhighlight %}
 
-### Results & Examples
-For the movie *Halloween (1978)*, here are the movies recommended by the models
+<img src="/../assets/article_images/movie_recommendation/diagram.png" alt=""/>
 
 **Architecture Choices:**
-- **Symmetric encoder-decoder**: Mirrors the compression in the expansion, though asymmetric architectures can also work
-- **ReLU activations**: Introduce non-linearity, allowing the network to learn complex patterns
-- **Sigmoid output**: Constrains outputs to [0,1], matching normalized input features
-- **16-dimensional bottleneck**: Balances between compression and information retention. Too small and we lose important distinctions; too large and we don't gain computational benefits
+- **Symmetric encoder-decoder**: Slight initial expansion followed by gradual compression preserves feature hierarchies
+- **ReLU + Batch Normalization**: Non-linear learning with stable training for a ~1000 dimensional inputs
+- **Linear output**: Unrestricted reconstruction for mixed continuous and binary features
+- **256-dimensional bottleneck**: 4x compression captures nuanced movie similarities without information loss
+- **Strategic dropout (0.2-0.3)**: Regularizes the 36k sample training set against overfitting
 
 ### Results & Examples
 
-For the movie *Halloween (1978)*, here are the recommendations from each model:
-
-**KNN Recommendations**
-1. *Halloween II (1981)* - Direct sequel
-2. *Halloween III: Season of the Witch (1982)*
-3. *Friday the 13th (1980)* - Similar slasher genre
-4. *A Nightmare on Elm Street (1984)*
-5. *The Texas Chain Saw Massacre (1974)*
+For the movie *Toy Story (1995)*, here are the recommendations from each model:
 
 **Autoencoder Recommendations**
-1. *The Texas Chain Saw Massacre (1974)* - Proto-slasher influence
-2. *Black Christmas (1974)* - Similar horror style and era
-3. *Suspiria (1977)* - Late 70s horror classic
-4. *Dawn of the Dead (1978)* - Same year, influential horror
-5. *The Hills Have Eyes (1977)* - Similar gritty 70s horror aesthetic
+
+1. *Monsters, Inc. (2001)* - Well received Pixar's comedy
+2. *Toy Story 2 (1999)* - Direct sequel expanding the toy universe
+3. *Finding Nemo (2003)* - Pixar's adventure with emotional depth
+4. *Aladdin (1992)* - Disney's animated classic
+5. *Cat City (1986)* - Animated comedy with adventure
+
+**KNN Recommendations**
+
+1. *Toy Story 2 (1999)* - Direct sequel continuing Andy's toys' story
+2. *Toy Story 3 (2010)* - Trilogy conclusion with coming-of-age themes
+3. *Toy Story 4 (2019)* - Latest chapter exploring purpose and belonging
+4. *Finding Nemo (2003)* - Pixar's adventure with emotional depth
+5. *Up (2009)* - Pixar's adventure with heartfelt storytelling
 
 **Analysis**
 
-While KNN focused heavily on direct franchise connections and obvious genre matches, the autoencoder discovered more nuanced similarities. It identified movies from the same horror era that share stylistic elements, directorial influences, and cultural impact—connections that go beyond simple feature matching.
+**KNN** takes a very literal approach, recommending the entire Toy Story franchise first. This makes sense given KNN's distance-based methodology and since sequels share nearly identical metadata (directors, studios, genre, cast).
 
-The autoencoder's recommendations suggest it learned to recognize the distinct characteristics of late 1970s independent horror cinema: low budgets, practical effects, and a particular gritty aesthetic that defined the era.
+**Autoencoder** shows more diversity, spreading across different Pixar and Disney animated films rather than clustering on the franchise. It seems to capture broader thematic and stylistic patterns in the animation space.
 
-### Performance Metrics
+Both models stay firmly within family-friendly animation, but KNN's franchise-heavy results suggest it may be overfitting to metadata features, while the autoencoder generalizes better across similar but distinct films. While the autoencoder provides more practical recommendations by balancing similarity with diversity, some users might prefer franchise recommendations.
 
-Beyond qualitative examples, quantitative evaluation showed:
-- **Inference speed**: Autoencoder recommendations are ~10x faster than KNN after embeddings are pre-computed
-- **Diversity**: Autoencoder recommendations showed 30% higher genre diversity while maintaining relevance
-- **User coverage**: Better recommendations for niche/unpopular movies compared to KNN's tendency to recommend only well-known titles
 
 ### Final Thoughts
 
