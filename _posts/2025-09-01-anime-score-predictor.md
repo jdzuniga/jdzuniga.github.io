@@ -69,8 +69,7 @@ Having achieved satisfying results, some improvements that I want to explore in 
 <img src="/../assets/article_images/animeoracle/demo.png" alt="Live Website"/>
 
 
-### Conclusion
-This project shows that machine learning can be used to forecast anime scores using only publicly available metadata. While the model isn’t perfect, it provides valuable insights into what factors may influence an anime’s reception. For more in depth details or if you want to try it yourself, the project is available on [Github](https://github.com/jdzuniga/animeoracle). Also, a [Live Demo](https://animeoracle.azurewebsites.net/)
+This project shows that machine learning can be used to forecast anime scores using only publicly available metadata. While the model isn’t perfect, it provides valuable insights into what factors may influence an anime’s reception. For more in depth details or if you want to try it yourself, the project is available on [Github](https://github.com/jdzuniga/animeoracle). Also, a [Live Demo](https://anime-oracle-96395747802.northamerica-northeast1.run.app/)
 is also available and the results are updated biweekly.
 
 
