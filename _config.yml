@@ -4,9 +4,9 @@ gems:
   - jekyll-paginate
 
 # Site settings
-title: "ML Notebook"
+title: "Data Notebook"
 description: > # this means to ignore newlines until "email:"
-   Exploring and building AI models
+   Exploring data and building AI models
 
 email: jdzuniga@hotmail.com
 
@@ -22,7 +22,7 @@ author: 'David Zuñiga'
 # author picture
 author_image: "/assets/images/profile.jpg"
 
-paginate:	4
+paginate:	10
 
 social:
   - icon:	github
