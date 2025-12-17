@@ -9,7 +9,6 @@ thumbnail: /assets/article_images/credit-card-fraud/thumbnail.jpg
 ---
 
 
-
 <p style="text-align: center; font-size: 15px; color: grey">
 Background and thumbnail images by Freepik AI.
 </p>
