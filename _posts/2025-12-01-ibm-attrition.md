@@ -12,10 +12,10 @@ Employee attrition can be costly and disruptive for companies. This project expl
 Using descriptive analysis and interactive dashboards in Tableau, I explored attrition patterns across job roles, tenure, training, and overtime. The goal was to turn data into actionable insights for HR decision-making.
 
 ### Key findings
-* Four roles—Laboratory Technician, Sales Executive, Sales Representative, and Research Scientist—accounted for **84%** of total attrition
-* Employees who left tended to have fewer years at the company
-* Those who left had lower training exposure
-* Over **50%** of leavers were working overtime
+- Four roles—Laboratory Technician, Sales Executive, Sales Representative, and Research Scientist—accounted for **84%** of total attrition
+- Employees who left tended to have fewer years at the company
+- Those who left had lower training exposure
+- Over **50%** of leavers were working overtime
 
 These patterns suggest retention efforts should focus on early-career employees in high-risk roles, workload management, and targeted training programs.
 
