@@ -4,15 +4,15 @@ gems:
   - jekyll-paginate
 
 # Site settings
-title: "Data Notebook"
+title: "David Zuñiga"
 description: > # this means to ignore newlines until "email:"
-   Exploring data and building AI models
+   Data Scientist | Exploring data and building AI models
 
-email: jdzuniga@hotmail.com
+email: j.d.zuniga@hotmail.com
 
 #home and floating picture
 logo: "/assets/images/blog.jpg"
-float_logo: true
+float_logo: false
 
 # home cover
 cover: "/assets/images/home_background.jpg"
