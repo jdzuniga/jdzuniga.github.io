@@ -6,7 +6,7 @@ gems:
 # Site settings
 title: "David Zuñiga"
 description: > # this means to ignore newlines until "email:"
-   Data Scientist | Exploring data and building AI models
+   Data Analyst/Scientist | Exploring data and building ML models
 
 email: j.d.zuniga@hotmail.com
 
