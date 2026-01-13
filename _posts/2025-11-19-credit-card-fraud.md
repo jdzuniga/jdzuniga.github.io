@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Detecting Credit Card Fraud with XGBoost"
-date:   2025-11-19
+date:   2025-09-01
 tags: regular
 image: /assets/article_images/credit-card-fraud/background.jpg
 image2: /assets/article_images/credit-card-fraud/background.jpg

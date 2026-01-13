@@ -3,7 +3,8 @@ layout: post
 title:  "Predicting Anime Score with Machine Learning"
 date:   2025-09-2
 # categories: ml lgboost anime
-tags: featured
+# tags: featured
+tags: regular
 image: /assets/article_images/animeoracle/background.jpg
 image2: /assets/article_images/animeoracle/background.jpg
 thumbnail: /assets/article_images/animeoracle/thumbnail.jpg
