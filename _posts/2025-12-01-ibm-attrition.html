@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Identifying Key Drivers of IBM Employee Turnover"
+title:  "IBM Employee Attrition Analysis"
 date:   2025-12-01
 tags: regular
 image: /assets/article_images/ibm-attrition/background.jpg
@@ -9,42 +9,99 @@ thumbnail: /assets/article_images/ibm-attrition//thumbnail.webp
 ---
 <html>
     <p>
-        Employee attrition can be costly and disruptive for companies. This project explores IBM employee data to identify key drivers of turnover and actionable strategies to retain high-risk employee groups. The dataset used for this project is available on <a href="https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset">Kaggle.</a>
-    </p>
-    <p>
-        Using descriptive analysis and interactive dashboards in Tableau, I explored attrition patterns across job roles, tenure, training, and overtime. The goal was to turn data into actionable insights for HR decision-making.
-    </p>
-    <h3>Key findings</h3>
-    <ul>
-        <li>
-            Four roles—Laboratory Technician, Sales Executive, Sales Representative, and Research Scientist—accounted for <strong>84%</strong> of total attrition
-        </li>
-        <li>
-            Employees who left tended to have fewer years at the company
-        </li>
-        <li>
-            Those who left had lower training exposure
-        </li>
-        <li>
-            Over <strong>50%</strong> of leavers were working overtime
-        </li>
-    </ul>
-    <p>
-        These patterns suggest retention efforts should focus on early-career employees in high-risk roles, workload management, and targeted training programs.
-    </p>
-    <p>
-        The project includes a Google Slides presentation with actionable insights and a Tableau dashboard for interactive exploration of employee attrition patterns.
-    </p>
-    <p>
-        <a href="https://docs.google.com/presentation/d/1pPQ5Ef0jMNRzgm2D0rVwMkoIl9IYC6Q6XiLYjgsb-ZI/present">Slide Deck</a>
-        <br>
-        <a href="https://public.tableau.com/app/profile/david.zuniga2718/viz/IBMAttrition_17659102063010/IBMAttritionDashboard">Tableau Dashboard</a>
+        Employee attrition is one of the most expensive challenges facing modern organizations. For a company like IBM, with thousands of employees across multiple departments and roles, losing talent means more than just recruitment costs—it represents lost institutional knowledge, disrupted team dynamics, and decreased productivity. This project dives deep into IBM's attrition patterns to identify the key drivers of employee departure and provide actionable recommendations for retention. 
     </p>
     
-    <h3>Tableau Dashboard Preview</h3>
+    
+    <h3>The Business Problem</h3>
+    <p>
+        Employee turnover costs organizations an average of 1.5 to 2 times an employee's annual salary when accounting for recruitment, onboarding, training, and lost productivity. For IBM, with an attrition rate of 16.12%, this translates to millions in preventable losses annually.
+    </p>
+    <p>
+        Questions that needed to be answered:
+    </p>
+    <ol>
+        <li><strong>Which departments are affected?</strong> Not all attrition is equal—losing a Research Scientist has different implications than losing a Sales Representative</li>
+        <li><strong>When are employees most vulnerable to leaving?</strong> Is there a critical window where intervention could prevent departure?</li>
+        <li><strong>What role does work-life balance play?</strong> How does overtime correlate with attrition across different roles?</li>
+        <li><strong>Are we investing in the wrong people?</strong> Does training frequency actually improve retention, or are we wasting resources?</li>
+    </ol>
+
+
+    <h3>The Analysis</h3>
+    <p>I conducted a comprehensive analysis of IBM's workforce data, examining over 1,400 employee records across 9 job roles, multiple tenure brackets, and various engagement metrics. The goal was to turn data into actionable insights for HR decision-making. </p>
+    
+
+<h3>Tableau Dashboard Preview</h3>
 <div style="max-width: 100%;">
         <div class='tableauPlaceholder' id='viz1765991273991' style='position: relative'><noscript><a href='#'><img alt='IBM Attrition Dashboard ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;IB&#47;IBMAttrition_17659102063010&#47;IBMAttritionDashboard&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='IBMAttrition_17659102063010&#47;IBMAttritionDashboard' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;IB&#47;IBMAttrition_17659102063010&#47;IBMAttritionDashboard&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1765991273991');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='1020px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='700px';vizElement.style.height='720px';} else { vizElement.style.width='100%';vizElement.style.height='1977px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
 </div>
+
+<br>
+<h3>Key findings</h3>
+<ol>
+    <li><strong>The Attrition Crisis is Concentrated</strong>: While the overall attrition rate sits at 16.12%, Laboratory Technician, Sales Executive, Sales Representative, and Research Scientist are accounted for 84% of total attrition. This suggests either compensation misalignment, limited career progression, or role dissatisfaction that requires immediate attention.</li>
+    <li><strong> The "Two-Year Cliff"</strong>: The "Years in Role" analysis uncovered a critical vulnerability window. Employees with 0-2 years in their current role experience a 64% of the total attrition. We can also see that the first two years at the company also have the most amount of attrition. Therefore, employees who survive the first two years become significantly more stable. This suggests that onboarding, role clarity, and early-career support are critical intervention points.</li>
+    <li><strong>The Overtime Burnout Factor</strong>: The aggregate analysis shows that 54% of employees who left worked overtime. Another key finding is that over 50% of the roles with the highest attrition—Laboratory Technician, Sales Executive, Sales Representative, and Research Scientist—also reported working overtime. This creates a clear picture: overtime significantly increases attrition risk, with more than double the attrition rate among overtime workers. However, some roles tolerate overtime better than others—suggesting that compensation, role expectations, or intrinsic motivation play moderating factors.</li>
+    <li><strong>The Training Imbalance</strong>: Employees who stayed received 2.83 training sessions on average, while those who left received 2.62. The difference is marginal—only 0.21 sessions. Training frequency alone doesn't prevent attrition. This finding challenges the common assumption that "more training equals better retention." Training quality matters more than quantity.</li>
+</ol>
+
+<h3>Business Impact & Recommendations</h3>
+<p><strong>Immediate Actions (0-3 months)</strong></p>
+<ul>
+    <li>Targeted retention bonuses for high-risk jobs with 0-2 years in role</li>
+    <li>Mandatory overtime audits to identify departments exceeding healthy thresholds</li>
+    <li>Conduct exit interviews and stay interviews specific to these roles.</li>
+</ul>
+
+<p><strong>Medium-Term Initiatives (3-12 months)</strong></p>
+<ul>
+    <li>Training quality assessment to replace low-impact programs with high-impact development</li>
+    <li>Work-life balance programs specifically targeting high-overtime roles</li>
+    <li>Enhanced onboarding with structured support for the critical 0-2 year period</li>
+</ul>
+
+<p><strong>Long-Term Structural Changes (12+ months)</strong></p>
+<ul>
+    <li>Compensation restructuring for high-attrition roles (Laboratory Technicians, Research Scientists)</li>
+    <li>Culture transformation to reduce overtime dependency and promote sustainable workloads</li>
+    <li>Predictive analytics to forecast attrition risk and enable proactive intervention</li>
+</ul>
+
+<p><strong>Projected ROI</strong></p>
+<p>Assuming:</p>
+<ul>
+    <li>Average IBM employee salary: $85,000</li>
+    <li>Replacement cost: 1.5x salary = $127,500</li>
+    <li>Current attrition: 237 employees (16.12% of 1,470)</li>
+    <li>Current cost: $30.2 million annually</li>
+</ul>
+
+<p>If retention initiatives reduce attrition by just 3 percentage points (16.12% → 13.12%):</p>
+<ul>
+    <li>Employees saved: ~44</li>
+    <li>Cost savings: $5.6 million annually</li>
+    <li>Initiative investment: ~$1 million</li>
+    <li>Net benefit: $4.6 million in year one, $5.6 million annually thereafter</li>
+</ul>
+
+<h3>Conclusion</h3>
+<p>
+    Employee attrition isn't a single problem—it's a collection of problems masquerading as one metric. The dashboard doesn't just present data—it enables decision-making. HR leaders can now answer critical questions in seconds: "Which department should we prioritize for retention bonuses?" "Are our onboarding investments paying off?" "Does overtime predict attrition in Research Scientists?".
+</p>
+
+<p>
+    The Google Slides presentation with actionable insights and a Tableau dashboard for interactive exploration of employee attrition patterns are available below. The dataset used for this project is available on <a href="https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset">Kaggle.</a>
+</p>
+<p>
+    <a href="https://docs.google.com/presentation/d/1pPQ5Ef0jMNRzgm2D0rVwMkoIl9IYC6Q6XiLYjgsb-ZI/present">Slide Deck</a>
+    <br>
+    <a href="https://public.tableau.com/app/profile/david.zuniga2718/viz/IBMAttrition_17659102063010/IBMAttritionDashboard">Tableau Dashboard</a>
+</p>
+
+<p>
+    Tech Stack: Python (NumPy, pandas, Matplotlib), Tableau, PowerPoint
+</p>
 
 <p style="text-align: center; font-size: 15px; color: grey">
 Background and thumbnail images by Freepik AI.
