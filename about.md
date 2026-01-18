@@ -3,9 +3,14 @@ layout: page
 title: About
 permalink: /about/
 ---
-Hi, I'm David, a data analyst/scientist with a background in mathematics, statistics, and computer science.
+Hi, I'm David, a data analyst and data scientist with a background in mathematics, statistics, and computer science.
 
-This blog is a space where I share my personal projects and experiments. I enjoy coding and exploring data to solve real problems using AI. My main interests are data analytics and machine learning.
+This blog is a space where I share my personal projects and experiments. I enjoy coding and exploring data to solve real problems using ML. My main interests are data analytics and machine learning.
+
+<br>
+<br>
+<br>
+<br>
 
 <!-- [PDF](/assets/math.pdf) -->
 <!-- <iframe src="/assets/math.pdf" width="100%" height="600px"></iframe> -->
