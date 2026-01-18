@@ -54,7 +54,6 @@ layout: default
             </section>
             <div class="post-meta">
               <time datetime="{{ post.date | date_to_long_string }}">{{ post.date | date_to_long_string }}</time>
-  <!--            <span class="post-tags-set">on {{#foreach tags}}<span class="post-tag-{{slug}}">{{#if @first}}{{else}}, {{/if}}<a href="/tag/{{slug}}">{{name}}</a></span>{{/foreach}}</span>-->
             </div>
           </div>
         </article>
@@ -76,13 +75,12 @@ layout: default
                 {% if post.thumbnail %}
                 <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="post-thumb">
                 {% endif %}
-                <p>{{ post.excerpt | strip_html | truncatewords: 50 }}</p>
+                <p>{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
               </div>
               
             </section>
             <div class="post-meta">
               <time datetime="{{ post.date | date_to_long_string }}">{{ post.date | date_to_long_string }}</time>
-<!--            <span class="post-tags-set">on {{#foreach tags}}<span class="post-tag-{{slug}}">{{#if @first}}{{else}}, {{/if}}<a href="/tag/{{slug}}">{{name}}</a></span>{{/foreach}}</span>-->
             </div>
           </div>
         </article>
@@ -104,10 +102,6 @@ layout: default
         <a class="newer-posts" href={{ "/page" | prepend: site.baseurl | append: paginator.next_page }}>Older posts &rarr;</a>
       {% endif %}
     </nav>
-
-
-    <!-- {{!! After all the posts, we have the previous/next pagination links }}
-    {{pagination}} -->
 
 </main>
 
