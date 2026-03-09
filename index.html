@@ -49,7 +49,7 @@ layout: default
                 {% if post.thumbnail %}
                 <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="post-thumb">
                 {% endif %}
-              <p>{{ post.content | strip_html | truncatewords: 50 }}</p>
+              <p>{{ post.content | strip_html | truncatewords: 30 }}</p>
               </div>
             </section>
             <div class="post-meta">
@@ -75,12 +75,17 @@ layout: default
                 {% if post.thumbnail %}
                 <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="post-thumb">
                 {% endif %}
-                <p>{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+                <div class="abc">
+                <p>{{ post.excerpt | strip_html | truncatewords: 35 }}</p>
+                {% for cat in post.categories %}
+                  <span class="post-cat">{{ cat }}</span>
+                {% endfor %}
+                </div>
               </div>
               
             </section>
             <div class="post-meta">
-              <time datetime="{{ post.date | date_to_long_string }}">{{ post.date | date_to_long_string }}</time>
+              <time datetime="{{ post.date | date_to_long_string }}">{{ post.date | date: "%B %-d, %Y" }}</time>
             </div>
           </div>
         </article>
