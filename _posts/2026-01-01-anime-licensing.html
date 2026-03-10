@@ -2,8 +2,7 @@
 layout: post
 title:  "Anime Licensing Decision Support"
 date:   2026-01-01
-tags: regular
-categories: Python SQL ML Looker
+tags: [regular, Python, SQL, ML, Looker, Supabase]
 image: /assets/article_images/anime-licensing/background.jpg
 image2: /assets/article_images/anime-licensing/background.jpg
 thumbnail: /assets/article_images/anime-licensing/thumbnail.jpg
@@ -39,26 +38,47 @@ In the competitive world of anime distribution, licensing decisions can make or 
     </li>
 </ul>
 
+
+<h3>
+    The Data Foundation
+</h3>
+<p>
+    The project is built on a star schema hosted in Supabase, designed to reflect the genuinely multi-dimensional nature of anime metadata.
+</p>
+<p>Core tables:</p>
+<ul>
+    <li>
+        <strong>dim_anime</strong>: anime_id, type, source material, rating, episode count, air date, status, duration
+    </li>
+    <li><strong>fact_anime</strong>: score, scored_by, score_prediction, rank, popularity, favorites, and members</li>
+    <li><strong>dim_genre, dim_studio, dim_producer, dim_demographic, dim_licensor, dim_theme</strong>: normalized dimension tables</li>
+    <li>Bridge tables (<strong>bridge_anime_genre, bridge_anime_studio,</strong> etc.): handle many-to-many relationships, since a title can belong to multiple genres, involve multiple studios, and target multiple demographics simultaneously</li>
+</ul>
+
+<img src="/../assets/article_images/anime-licensing/db.png" alt="star schema structure"/>
+
 <h3>The Solution</h3>
 <p>
-I built an interactive decision support dashboard that aggregates multiple data dimensions to provide a comprehensive view of the licensing landscape. The tool enables stakeholders to evaluate upcoming titles based on quantitative predictions rather than intuition alone.
+I built an interactive decision support dashboard that aggregates multiple data dimensions to provide a comprehensive view of the licensing landscape. The tool enables stakeholders to evaluate titles based on quantitative predictions rather than intuition alone.
 </p>
 
 <!-- <iframe width="750" height="500" src="https://lookerstudio.google.com/embed/reporting/a90c2df0-4f24-4530-8cf0-3ccfda4def83/page/4VtjF" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe> -->
 
 <h3>Core Features</h3>
-<ol>
+<ul>
     <li><strong>Predictive Scoring System</strong>: The dashboard displays predicted scores for upcoming titles, calculated using a machine learning model trained on historical anime performance data. This allows licensors to identify potential breakout hits early in the production cycle.</li>
     <li><strong>Genre Trend Analysis</strong>: The dashboard tracks genre popularity over time, revealing crucial patterns. The visualization shows that Action and Fantasy have maintained relatively stable popularity from 2020-2026, while Romance experienced a notable surge in 2025 before declining. These insights help licensors align their acquisitions with current audience preferences rather than past trends.</li>
-    <li><strong>Studio Performance Metrics</strong>: The dashboard ranks studios by both their hit rate for upcoming titles and their average member engagement. This dual perspective helps licensors understand which studios consistently produce popular content and which have large, engaged fanbases.</li>
+    <li><strong>Studio Performance Metrics</strong>: A studio can accumulate large audiences through volume just as easily as through excellence. What it signals is the ability to build and retain audiences over time, capturing production consistency, distribution quality, and marketing relationships in a single number.</li>
+    <li><strong>Audience vs. Score Scatter Plot</strong>: The scatter plot plots every title with audience size on the x-axis and community score on the y-axis.</li>
     <li><strong>Comprehensive Title Rankings</strong>: A sortable table presents all upcoming titles with their predicted scores, studios, genres, expected members, and engagement rates. Licensors can filter by studio and year range, enabling targeted analysis of specific market segments.</li>
-</ol>
+</ul>
 
 <h3>Key Insights</h3>
 <ul>
     <li>
-        Studio consistency matters: Top-tier studios (Studio Bind, Gekkou) maintain 80%+ hit rates, while mid-tier studios show more variability
+        Using the scatter plot:
     </li>
+
     <li>
         Genre diversification: Single-genre shows perform less reliably than those blending complementary genres (Action + Adventure + Fantasy)
     </li>

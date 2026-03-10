@@ -77,8 +77,10 @@ layout: default
                 {% endif %}
                 <div class="abc">
                 <p>{{ post.excerpt | strip_html | truncatewords: 35 }}</p>
-                {% for cat in post.categories %}
-                  <span class="post-cat">{{ cat }}</span>
+                {% for tag in post.tags %}
+                  {% unless tag == "featured" or tag == "regular" %}
+                    <span class="post-tag">{{ tag }}</span>
+                  {% endunless %}
                 {% endfor %}
                 </div>
               </div>
